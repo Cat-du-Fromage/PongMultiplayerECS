@@ -15,10 +15,6 @@
             "Version": "0.1"
         },
         {
-            "$type": "Unity.Build.Common.OutputBuildDirectory, Unity.Build",
-            "OutputDirectory": "Z:\\ProjetPerso\\Unity\\ECS_Project\\Builds\\PongMultiPlayerECS"
-        },
-        {
             "$type": "Unity.Build.Common.SceneList, Unity.Build",
             "$version": 1,
             "BuildCurrentScene": false,
