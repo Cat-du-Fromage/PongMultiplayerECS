@@ -1,19 +1,40 @@
+using System;
+using Unity.Collections;
 using Unity.Entities;
+using Unity.NetCode;
 using Unity.Transforms;
+using UnityEngine;
 
+[UpdateInGroup(typeof(ServerSimulationSystemGroup))]
 public partial class GoInServerSystem : SystemBase
 {
+    protected override void OnCreate()
+    {
+        RequireSingletonForUpdate<SpawnerPaddles>();
+        RequireForUpdate(GetEntityQuery(
+            ComponentType.ReadOnly<GoInGameRequest>(),
+            ComponentType.ReadOnly<ReceiveRpcCommandRequestComponent>()
+        ));
+    }
+
     protected override void OnUpdate()
     {
-        Entities.ForEach((ref Translation translation, in Rotation rotation) => {
-            // Implement the work to perform for each entity here.
-            // You should only access data that is local or that is a
-            // field on this job. Note that the 'rotation' parameter is
-            // marked as 'in', which means it cannot be modified,
-            // but allows this job to run in parallel with other jobs
-            // that want to read Rotation component data.
-            // For example,
-            //     translation.Value += math.mul(rotation.Value, new float3(0, 0, 1)) * deltaTime;
-        }).Schedule();
+        Entity prefabLeftPaddle = GetSingleton<SpawnerPaddles>().LeftPaddle;
+        Entity prefabRightPaddle = GetSingleton<SpawnerPaddles>().RightPaddle;
+
+        ComponentDataFromEntity<NetworkIdComponent> networkIdFromEntity =
+            GetComponentDataFromEntity<NetworkIdComponent>(true);
+
+        EntityCommandBuffer commandBuffer = new(Allocator.Temp);
+        Entities
+            .WithBurst()
+            .WithAll<GoInGameRequest>()
+            .WithNone<SendRpcCommandRequestComponent>()
+            .ForEach((Entity entity, in ReceiveRpcCommandRequestComponent reqSrc) =>
+            {
+                commandBuffer.AddComponent<NetworkStreamInGame>(reqSrc.SourceConnection);
+                Debug.Log($"req source {networkIdFromEntity[reqSrc.SourceConnection].Value} plugged to in game");
+                
+            }).Run();
     }
 }
