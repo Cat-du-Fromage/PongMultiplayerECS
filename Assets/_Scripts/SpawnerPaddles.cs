@@ -1,9 +1,8 @@
 using Unity.Entities;
 
 [GenerateAuthoringComponent]
-public class SpawnerPaddles : IComponentData
+public struct SpawnerPaddles : IComponentData
 {
     public Entity LeftPaddle;
     public Entity RightPaddle;
-    
 }
