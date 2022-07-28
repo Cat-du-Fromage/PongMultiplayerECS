@@ -22,7 +22,7 @@ public partial class GoInServerSystem : SystemBase
     {
         ComponentDataFromEntity<NetworkIdComponent> networkIdFromEntity =
             GetComponentDataFromEntity<NetworkIdComponent>(true);
-        
+
         EntityCommandBuffer commandBuffer = new(Allocator.Temp);
         Entities
             .WithBurst()
@@ -32,19 +32,21 @@ public partial class GoInServerSystem : SystemBase
             {
                 commandBuffer.AddComponent<NetworkStreamInGame>(reqSrc.SourceConnection);
                 Entity paddle = commandBuffer.Instantiate(prefabPaddle);
-                
+
                 commandBuffer.SetComponent(paddle,
                     new GhostOwnerComponent { NetworkId = networkIdFromEntity[reqSrc.SourceConnection].Value });
+                commandBuffer.SetComponent(reqSrc.SourceConnection,
+                    new CommandTargetComponent { targetEntity = paddle });
                 commandBuffer.SetComponent(paddle, new Translation { Value = startPosition });
+
                 commandBuffer.AddBuffer<PlayerInput>(paddle);
                 commandBuffer.DestroyEntity(reqEntity);
             }).Run();
         commandBuffer.Playback(EntityManager);
     }
-    
+
     protected override void OnUpdate()
     {
         CreatePaddle(GetSingleton<SpawnerPaddles>().LeftPaddle, new float3(-17, 2.5f, 0));
-        
     }
 }
