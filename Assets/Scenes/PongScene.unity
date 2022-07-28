@@ -253,14 +253,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.3, y: 10.1, z: 19.6}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 10.1, z: -26.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,6 +465,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8873828801559187051, guid: 7c6945480d99e654e930496c5b9b86a9,
+        type: 3}
+      propertyPath: Name
+      value: NewtorkPaddle
+      objectReference: {fileID: 0}
     - target: {fileID: 669786086012549429, guid: 7c6945480d99e654e930496c5b9b86a9,
         type: 3}
       propertyPath: m_RootOrder
@@ -539,6 +544,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -902094536964164587, guid: 74e894cc06222cb41b2487fe532d27aa,
+        type: 3}
+      propertyPath: Name
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8817412256192197411, guid: 74e894cc06222cb41b2487fe532d27aa,
         type: 3}
       propertyPath: m_Name
@@ -613,6 +623,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9096777851520943837, guid: d8d83c44038037c4ab53636c342e1dc1,
+        type: 3}
+      propertyPath: Name
+      value: LocalPaddle
+      objectReference: {fileID: 0}
     - target: {fileID: 9190868294070838500, guid: d8d83c44038037c4ab53636c342e1dc1,
         type: 3}
       propertyPath: m_Name

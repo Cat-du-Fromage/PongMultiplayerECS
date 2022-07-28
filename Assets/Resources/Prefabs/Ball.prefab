@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8817412256192197408}
   - component: {fileID: 8817412256192197409}
   - component: {fileID: 8817412256192197410}
+  - component: {fileID: -902094536964164587}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -97,3 +98,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-902094536964164587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817412256192197411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c79d771cedb4794bf100ce60df5f764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultGhostMode: 1
+  SupportedGhostModes: 3
+  OptimizationMode: 0
+  Importance: 1
+  prefabId: 74e894cc06222cb41b2487fe532d27aa
+  Name: Ball
+  HasOwner: 0
+  SupportAutoCommandTarget: 0
+  UsePreSerialization: 0
+  RefGameObjects: []
+  RefGuids: 
+  ComponentNames: []
+  PrefabTypeOverrides: []
+  SendTypeOverrides: []
+  VariantOverrides: []
+  SendForChild: []

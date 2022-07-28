@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 9190868294070838507}
   - component: {fileID: 9190868294070838506}
   - component: {fileID: 9190868294070838501}
+  - component: {fileID: -9096777851520943837}
+  - component: {fileID: -2673192244950387103}
+  - component: {fileID: 7436816247761428125}
   m_Layer: 0
   m_Name: Local Paddle
   m_TagString: Untagged
@@ -97,3 +100,55 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-9096777851520943837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9190868294070838500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c79d771cedb4794bf100ce60df5f764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultGhostMode: 2
+  SupportedGhostModes: 3
+  OptimizationMode: 0
+  Importance: 1
+  prefabId: d8d83c44038037c4ab53636c342e1dc1
+  Name: LocalPaddle
+  HasOwner: 0
+  SupportAutoCommandTarget: 0
+  UsePreSerialization: 0
+  RefGameObjects: []
+  RefGuids: 
+  ComponentNames: []
+  PrefabTypeOverrides: []
+  SendTypeOverrides: []
+  VariantOverrides: []
+  SendForChild: []
+--- !u!114 &-2673192244950387103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9190868294070838500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fea7091bb9848b191c018d3718ec0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7436816247761428125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9190868294070838500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650ea5eda79a451794cf2ab6b37152ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
