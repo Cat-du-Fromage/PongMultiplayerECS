@@ -18,7 +18,6 @@ public partial class GoInClientSystem : SystemBase
     protected override void OnUpdate()
     {
         EntityCommandBuffer commandBuffer = new(Allocator.Temp);
-
         Entities
             .WithBurst()
             .WithName("Paddles")
@@ -31,6 +30,5 @@ public partial class GoInClientSystem : SystemBase
                 commandBuffer.AddComponent(request, new SendRpcCommandRequestComponent { TargetConnection = entity });
             }).Run();
         commandBuffer.Playback(EntityManager);
-        
     }
 }
