@@ -1,6 +1,7 @@
 using System;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.NetCode;
 using Unity.Transforms;
 using UnityEngine;
@@ -17,24 +18,33 @@ public partial class GoInServerSystem : SystemBase
         ));
     }
 
-    protected override void OnUpdate()
+    private void CreatePaddle(Entity prefabPaddle, float3 startPosition)
     {
-        Entity prefabLeftPaddle = GetSingleton<SpawnerPaddles>().LeftPaddle;
-        Entity prefabRightPaddle = GetSingleton<SpawnerPaddles>().RightPaddle;
-
         ComponentDataFromEntity<NetworkIdComponent> networkIdFromEntity =
             GetComponentDataFromEntity<NetworkIdComponent>(true);
-
+        
         EntityCommandBuffer commandBuffer = new(Allocator.Temp);
         Entities
             .WithBurst()
             .WithAll<GoInGameRequest>()
             .WithNone<SendRpcCommandRequestComponent>()
-            .ForEach((Entity entity, in ReceiveRpcCommandRequestComponent reqSrc) =>
+            .ForEach((Entity reqEntity, in ReceiveRpcCommandRequestComponent reqSrc) =>
             {
                 commandBuffer.AddComponent<NetworkStreamInGame>(reqSrc.SourceConnection);
-                Debug.Log($"req source {networkIdFromEntity[reqSrc.SourceConnection].Value} plugged to in game");
+                Entity paddle = commandBuffer.Instantiate(prefabPaddle);
                 
+                commandBuffer.SetComponent(paddle,
+                    new GhostOwnerComponent { NetworkId = networkIdFromEntity[reqSrc.SourceConnection].Value });
+                commandBuffer.SetComponent(paddle, new Translation { Value = startPosition });
+                commandBuffer.AddBuffer<PlayerInput>(paddle);
+                commandBuffer.DestroyEntity(reqEntity);
             }).Run();
+        commandBuffer.Playback(EntityManager);
+    }
+    
+    protected override void OnUpdate()
+    {
+        CreatePaddle(GetSingleton<SpawnerPaddles>().LeftPaddle, new float3(-17, 2.5f, 0));
+        
     }
 }
