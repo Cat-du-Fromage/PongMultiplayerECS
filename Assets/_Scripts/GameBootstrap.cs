@@ -1,5 +1,3 @@
-using System;
-using Unity.Entities;
 using Unity.NetCode;
 
 // Create a custom bootstrap which enables auto connect.
@@ -14,3 +12,4 @@ public class GameBootstrap : ClientServerBootstrap
         return base.Initialize(defaultWorldName); // Use the regular bootstrap
     }
 }
+
